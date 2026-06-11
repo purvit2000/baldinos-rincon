@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 675" role="img" aria-labelledby="title">
+  <title id="title">Catering platter placeholder</title>
+  <rect width="900" height="675" fill="#fffaf0"/>
+  <rect x="130" y="142" width="640" height="390" rx="8" fill="#17211d"/>
+  <rect x="160" y="172" width="580" height="330" rx="8" fill="#ffffff"/>
+  <g>
+    <rect x="205" y="226" width="190" height="82" rx="8" fill="#f7d68c"/>
+    <rect x="505" y="226" width="190" height="82" rx="8" fill="#f7d68c"/>
+    <rect x="205" y="365" width="190" height="82" rx="8" fill="#f7d68c"/>
+    <rect x="505" y="365" width="190" height="82" rx="8" fill="#f7d68c"/>
+    <path d="M222 266h156" stroke="#b91f24" stroke-width="20" stroke-linecap="round"/>
+    <path d="M522 266h156" stroke="#1d6848" stroke-width="20" stroke-linecap="round"/>
+    <path d="M222 405h156" stroke="#1d6848" stroke-width="20" stroke-linecap="round"/>
+    <path d="M522 405h156" stroke="#b91f24" stroke-width="20" stroke-linecap="round"/>
+  </g>
+</svg>

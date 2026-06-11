@@ -1,0 +1,20 @@
+/* Minimal helpers — layout/styling is handled by Tailwind utility classes. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide Alpine-bound markup until Alpine initializes to avoid a flash. */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}

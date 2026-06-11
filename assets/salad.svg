@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 675" role="img" aria-labelledby="title">
+  <title id="title">Fresh salad placeholder</title>
+  <rect width="900" height="675" fill="#fffaf0"/>
+  <circle cx="450" cy="344" r="236" fill="#e7dccb"/>
+  <circle cx="450" cy="320" r="206" fill="#ffffff"/>
+  <g fill="#1d6848">
+    <circle cx="338" cy="260" r="74"/>
+    <circle cx="474" cy="245" r="82"/>
+    <circle cx="580" cy="332" r="76"/>
+    <circle cx="382" cy="405" r="83"/>
+    <circle cx="492" cy="390" r="74"/>
+  </g>
+  <g fill="#b91f24">
+    <circle cx="362" cy="328" r="30"/>
+    <circle cx="520" cy="305" r="28"/>
+    <circle cx="462" cy="445" r="26"/>
+  </g>
+  <g fill="#f2b441">
+    <rect x="296" y="374" width="88" height="26" rx="8" transform="rotate(-18 340 387)"/>
+    <rect x="516" y="378" width="86" height="26" rx="8" transform="rotate(21 559 391)"/>
+  </g>
+</svg>

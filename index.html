@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Baldinos Giant Jersey Subs in Rincon, GA — fresh hot & cold subs, salads, wraps, and catering. 801 S Columbia Ave. Rated 4.8 on Google."
+    />
+    <title>Baldinos Rincon | Giant Jersey Subs, Salads & Catering</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#16201c",
+              paper: "#fbf6ec",
+              brand: { DEFAULT: "#c0282d", dark: "#7d1117" },
+              gold: "#e8a93a",
+              forest: "#1d6848",
+            },
+            fontFamily: {
+              display: ['Fraunces', 'Georgia', 'serif'],
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              card: "0 18px 50px rgba(22, 32, 28, 0.12)",
+              soft: "0 10px 30px rgba(22, 32, 28, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body
+    class="bg-paper text-ink font-sans antialiased"
+    x-data="site()"
+    x-cloak
+  >
+    <!-- Hiring announcement bar -->
+    <a
+      href="./careers.html"
+      class="group block bg-gold text-ink"
+    >
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-2 text-center text-sm font-800 sm:px-8">
+        <span class="inline-flex items-center gap-2">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/70"></span>
+            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand"></span>
+          </span>
+          We're Hiring Now!
+        </span>
+        <span class="font-600">Join the Baldinos Rincon team —</span>
+        <span class="underline decoration-2 underline-offset-2 group-hover:no-underline">Apply today →</span>
+      </div>
+    </a>
+
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 text-white backdrop-blur-lg"
+    >
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8">
+        <a href="#home" class="flex items-center gap-3" aria-label="Baldinos Rincon home">
+          <span
+            class="grid h-11 w-11 place-items-center rounded-full bg-brand text-lg font-black ring-2 ring-white/80"
+            >B</span
+          >
+          <span class="leading-tight">
+            <strong class="block font-display text-lg font-700">Baldinos</strong>
+            <small class="block text-xs text-white/65">Rincon, Georgia</small>
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-7 text-sm font-700 lg:flex">
+          <a href="./menu.html" class="text-white/80 transition hover:text-white">Menu</a>
+          <a href="#catering" class="text-white/80 transition hover:text-white">Catering</a>
+          <a href="#about" class="text-white/80 transition hover:text-white">About</a>
+          <a href="#reviews" class="text-white/80 transition hover:text-white">Reviews</a>
+          <a href="#visit" class="text-white/80 transition hover:text-white">Visit</a>
+          <a href="./careers.html" class="text-gold transition hover:text-white">Careers</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="https://direct.chownow.com/order/34681/locations/61755"
+            class="hidden rounded-lg bg-brand px-4 py-2.5 text-sm font-800 text-white shadow-[0_10px_22px_rgba(192,40,45,0.3)] transition hover:bg-brand-dark sm:inline-flex"
+            >Order Online</a
+          >
+          <button
+            type="button"
+            class="grid h-11 w-11 place-items-center rounded-lg border border-white/25 lg:hidden"
+            aria-label="Toggle navigation"
+            :aria-expanded="navOpen"
+            @click="navOpen = !navOpen"
+          >
+            <svg x-show="!navOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+            <svg x-show="navOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6l-12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile nav -->
+      <nav
+        x-show="navOpen"
+        x-transition
+        @click="navOpen = false"
+        class="grid gap-1 border-t border-white/10 px-5 pb-4 pt-2 text-sm font-700 lg:hidden"
+      >
+        <a href="./menu.html" class="rounded-md px-3 py-3 text-white/85 hover:bg-white/5">Menu</a>
+        <a href="#catering" class="rounded-md px-3 py-3 text-white/85 hover:bg-white/5">Catering</a>
+        <a href="#about" class="rounded-md px-3 py-3 text-white/85 hover:bg-white/5">About</a>
+        <a href="#reviews" class="rounded-md px-3 py-3 text-white/85 hover:bg-white/5">Reviews</a>
+        <a href="#visit" class="rounded-md px-3 py-3 text-white/85 hover:bg-white/5">Visit</a>
+        <a href="./careers.html" class="rounded-md px-3 py-3 font-800 text-gold hover:bg-white/5">Careers — We're Hiring</a>
+        <a
+          href="https://direct.chownow.com/order/34681/locations/61755"
+          class="mt-1 rounded-lg bg-brand px-3 py-3 text-center text-white"
+          >Order Online</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section
+        id="home"
+        class="relative flex min-h-[88vh] items-end overflow-hidden text-white"
+      >
+        <div
+          class="absolute inset-0 scale-105 bg-cover bg-center"
+          style="background-image: url('./assets/hero.jpg')"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/55"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-32 sm:px-8">
+          <div class="max-w-3xl">
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-800 uppercase tracking-widest text-gold">
+              <span aria-hidden="true">★</span> Rincon's neighborhood sub shop
+            </p>
+            <h1 class="font-display text-6xl font-900 leading-[0.92] sm:text-7xl lg:text-8xl">
+              Baldinos Rincon
+            </h1>
+            <p class="mt-5 max-w-xl text-lg text-white/85">
+              Fresh-baked bread, giant Jersey subs, crisp salads, party trays, and the kind of
+              counter-service warmth that turns lunch into a habit.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                href="./menu.html"
+                class="rounded-lg bg-brand px-6 py-3 font-800 shadow-[0_10px_22px_rgba(192,40,45,0.3)] transition hover:bg-brand-dark"
+                >See the Menu</a
+              >
+              <a
+                href="#visit"
+                class="rounded-lg border border-white/45 px-6 py-3 font-800 transition hover:bg-white/10"
+                >Call or Visit</a
+              >
+            </div>
+
+            <div class="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 backdrop-blur">
+              <span class="text-2xl font-900 text-gold">4.8</span>
+              <span class="text-sm leading-tight">
+                <span class="block tracking-widest text-gold">★★★★★</span>
+                <span class="text-white/80">Rated by 35 Google reviewers</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature strip -->
+      <section class="border-y border-black/5 bg-white">
+        <div class="mx-auto grid max-w-7xl gap-px sm:grid-cols-3">
+          <div class="px-6 py-7 sm:px-8">
+            <strong class="block font-700">Hot &amp; Cold Subs</strong>
+            <span class="text-ink/60">Classic Baldinos builds, made fresh to order.</span>
+          </div>
+          <div class="px-6 py-7 sm:border-l sm:border-black/5 sm:px-8">
+            <strong class="block font-700">Fast Pickup</strong>
+            <span class="text-ink/60">Order ahead and skip the lunch-rush line.</span>
+          </div>
+          <div class="px-6 py-7 sm:border-l sm:border-black/5 sm:px-8">
+            <strong class="block font-700">Office Catering</strong>
+            <span class="text-ink/60">Party subs, boxed lunches, and dessert trays.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu -->
+      <section id="menu" class="scroll-mt-24 px-5 py-20 sm:px-8 lg:py-28">
+        <div class="mx-auto max-w-7xl">
+          <div class="max-w-2xl">
+            <p class="text-xs font-900 uppercase tracking-widest text-brand">Our Menu</p>
+            <h2 class="mt-2 font-display text-4xl font-700 sm:text-5xl">Get it the Baldinos way</h2>
+            <p class="mt-3 text-ink/65">
+              The Baldinos Way includes lettuce, onion, tomato, oil &amp; vinegar, and seasoning.
+              Mayo, mustard, hot peppers, and sweet peppers are available on request.
+            </p>
+            <a href="./menu.html" class="mt-4 inline-flex items-center gap-2 font-800 text-brand transition hover:gap-3">
+              View the full menu <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div
+            class="mt-8 inline-flex gap-1 rounded-xl border border-black/10 bg-white p-1.5"
+            role="tablist"
+          >
+            <template x-for="t in tabs" :key="t.id">
+              <button
+                type="button"
+                role="tab"
+                class="min-w-[96px] rounded-lg px-4 py-2.5 text-sm font-800 transition"
+                :class="tab === t.id ? 'bg-forest text-white shadow-soft' : 'text-ink/60 hover:text-ink'"
+                :aria-selected="tab === t.id"
+                @click="tab = t.id"
+                x-text="t.label"
+              ></button>
+            </template>
+          </div>
+
+          <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <template x-for="item in menu[tab]" :key="item.name">
+              <article
+                class="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
+              >
+                <img
+                  :src="item.img"
+                  :alt="item.name"
+                  class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3">
+                    <h3 class="text-lg font-700" x-text="item.name"></h3>
+                    <span class="whitespace-nowrap font-900 text-brand" x-text="item.price"></span>
+                  </div>
+                  <p class="mt-1.5 text-sm text-ink/60" x-text="item.desc"></p>
+                </div>
+              </article>
+            </template>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catering split -->
+      <section id="catering" class="scroll-mt-24 bg-forest text-white">
+        <div class="mx-auto grid max-w-7xl items-stretch lg:grid-cols-2">
+          <div class="min-h-[340px]">
+            <img src="./assets/catering-spread.jpg" alt="Baldinos catering spread being plated" class="h-full w-full object-cover" />
+          </div>
+          <div class="px-6 py-14 sm:px-12 lg:py-20">
+            <p class="text-xs font-900 uppercase tracking-widest text-gold">Catering</p>
+            <h2 class="mt-2 font-display text-3xl font-700 sm:text-4xl">
+              Feed the whole crew without slowing the day down
+            </h2>
+            <p class="mt-4 text-white/80">
+              Party subs, boxed lunches, salads, sides, desserts, and drinks for meetings, school
+              events, church groups, and family gatherings. Delivery catering carries a $50 minimum
+              for the Rincon location.
+            </p>
+            <ul class="mt-6 grid gap-2.5">
+              <li class="flex items-center gap-3"><span class="text-gold font-900">✓</span> Office lunches and training days</li>
+              <li class="flex items-center gap-3"><span class="text-gold font-900">✓</span> School events, church groups, and teams</li>
+              <li class="flex items-center gap-3"><span class="text-gold font-900">✓</span> Family parties and weekend get-togethers</li>
+            </ul>
+            <a
+              href="#contact"
+              class="mt-8 inline-flex rounded-lg bg-white px-6 py-3 font-800 text-forest transition hover:bg-paper"
+              >Request Catering</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="scroll-mt-24 bg-white px-5 py-20 sm:px-8 lg:py-28">
+        <div class="mx-auto max-w-7xl">
+          <div class="max-w-2xl">
+            <p class="text-xs font-900 uppercase tracking-widest text-brand">About the Store</p>
+            <h2 class="mt-2 font-display text-4xl font-700 sm:text-5xl">
+              Built for regulars, ready for first-timers
+            </h2>
+          </div>
+          <div class="mt-10 grid gap-6 md:grid-cols-3">
+            <article class="rounded-2xl border border-black/5 bg-paper p-7 shadow-soft">
+              <h3 class="text-lg font-700">Good food, no fuss</h3>
+              <p class="mt-2 text-ink/65">
+                Long-running Baldinos favorites served from a convenient Rincon spot built for quick
+                lunches, family dinners, pickup orders, and casual dine-in visits.
+              </p>
+            </article>
+            <article class="rounded-2xl border border-black/5 bg-paper p-7 shadow-soft">
+              <h3 class="text-lg font-700">Made fresh</h3>
+              <p class="mt-2 text-ink/65">
+                Guests regularly call out the soft bread, fresh toppings, generous portions, and
+                meats sliced for sandwiches when ordered.
+              </p>
+            </article>
+            <article class="rounded-2xl border border-black/5 bg-paper p-7 shadow-soft">
+              <h3 class="text-lg font-700">Local service</h3>
+              <p class="mt-2 text-ink/65">
+                The Rincon crew is known for friendly counter service, carefully wrapped sandwiches,
+                and remembering the regulars who stop in often.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reviews -->
+      <section
+        id="reviews"
+        class="scroll-mt-24 bg-ink bg-cover bg-center bg-blend-multiply px-5 py-20 text-white sm:px-8 lg:py-28"
+        style="background-image: linear-gradient(rgba(22,32,28,0.86), rgba(22,32,28,0.86)), url('./assets/dining.jpg')"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div class="max-w-2xl">
+              <p class="text-xs font-900 uppercase tracking-widest text-gold">Google Reviews</p>
+              <h2 class="mt-2 font-display text-4xl font-700 sm:text-5xl">
+                What Rincon guests are saying
+              </h2>
+              <p class="mt-3 text-white/75">
+                Real reviews for Baldinos Giant Jersey Subs at 801 S Columbia Ave, pulled from the
+                store's Google Business listing.
+              </p>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Baldinos%20Giant%20Jersey%20Subs%20801%20S%20Columbia%20Ave%20Rincon%20GA%2031326"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex shrink-0 items-center gap-4 rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur transition hover:bg-white/15"
+            >
+              <span class="font-display text-4xl font-900 text-gold">4.8</span>
+              <span class="text-sm leading-tight">
+                <span class="block text-lg tracking-widest text-gold">★★★★★</span>
+                <span class="text-white/80">35 Google reviews</span>
+                <span class="mt-0.5 block text-xs text-white/55 underline">Read on Google →</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <template x-for="r in reviews" :key="r.name">
+              <article class="flex flex-col rounded-2xl bg-paper p-6 text-ink shadow-card">
+                <div class="flex items-center justify-between">
+                  <div class="tracking-widest text-gold" aria-label="5 out of 5 stars">★★★★★</div>
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" aria-label="Google" role="img">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1Z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23Z"/>
+                    <path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84Z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38Z"/>
+                  </svg>
+                </div>
+                <p class="mt-4 flex-1 text-[0.98rem] leading-relaxed" x-text="'“' + r.text + '”'"></p>
+                <div class="mt-5 flex items-center gap-3 border-t border-black/5 pt-4">
+                  <span
+                    class="grid h-10 w-10 place-items-center rounded-full bg-forest/10 font-800 text-forest"
+                    x-text="r.name.charAt(0)"
+                  ></span>
+                  <span class="leading-tight">
+                    <strong class="block text-sm font-800" x-text="r.name"></strong>
+                    <small class="text-xs text-ink/55" x-text="r.when"></small>
+                  </span>
+                </div>
+              </article>
+            </template>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visit -->
+      <section id="visit" class="scroll-mt-24 bg-paper">
+        <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
+          <div class="px-6 py-14 sm:px-12 lg:py-20">
+            <p class="text-xs font-900 uppercase tracking-widest text-brand">Visit Us</p>
+            <h2 class="mt-2 font-display text-4xl font-700 sm:text-5xl">Baldinos Rincon</h2>
+            <address class="mt-4 not-italic text-ink/65">
+              801 S Columbia Ave<br />
+              Rincon, GA 31326
+            </address>
+            <p class="mt-2">
+              <a href="tel:+19122955184" class="font-800 text-brand hover:underline">(912) 295-5184</a>
+            </p>
+
+            <div class="mt-7 grid gap-3">
+              <div class="flex justify-between border-b border-black/10 pb-3">
+                <span class="text-ink/60">Monday – Saturday</span><strong>10:00 AM – 9:00 PM</strong>
+              </div>
+              <div class="flex justify-between border-b border-black/10 pb-3">
+                <span class="text-ink/60">Sunday</span><strong>11:00 AM – 8:00 PM</strong>
+              </div>
+              <div class="flex justify-between border-b border-black/10 pb-3">
+                <span class="text-ink/60">Catering pickup &amp; delivery</span><strong>11:00 AM – 7:30 PM</strong>
+              </div>
+            </div>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Baldinos%20Giant%20Jersey%20Subs%20801%20S%20Columbia%20Ave%20Rincon%20GA%2031326"
+                class="rounded-lg border border-black/10 bg-white px-4 py-2.5 font-800 transition hover:border-black/25"
+                >Google Map</a
+              >
+              <a href="tel:+19122955184" class="rounded-lg border border-black/10 bg-white px-4 py-2.5 font-800 transition hover:border-black/25">Call</a>
+              <a
+                href="https://direct.chownow.com/order/34681/locations/61755"
+                class="rounded-lg bg-brand px-4 py-2.5 font-800 text-white transition hover:bg-brand-dark"
+                >Order Online</a
+              >
+            </div>
+          </div>
+
+          <div class="min-h-[360px] bg-[#d7e5d3]">
+            <iframe
+              title="Map to Baldinos Rincon"
+              src="https://www.google.com/maps?q=Baldinos%20Giant%20Jersey%20Subs%20801%20S%20Columbia%20Ave%20Rincon%20GA%2031326&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="h-full min-h-[360px] w-full border-0"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- Order band -->
+      <section class="bg-brand-dark text-white">
+        <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-14 sm:flex-row sm:items-center sm:px-8">
+          <div>
+            <p class="text-xs font-900 uppercase tracking-widest text-gold">Order Ahead</p>
+            <h2 class="mt-2 font-display text-3xl font-700 sm:text-4xl">
+              Lunch is better when it's waiting for you
+            </h2>
+          </div>
+          <a
+            href="https://direct.chownow.com/order/34681/locations/61755"
+            class="rounded-lg bg-white px-6 py-3 font-800 text-brand-dark transition hover:bg-paper"
+            >Order Online</a
+          >
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="scroll-mt-24 bg-white px-5 py-20 sm:px-8 lg:py-28">
+        <div class="mx-auto max-w-2xl">
+          <p class="text-xs font-900 uppercase tracking-widest text-brand">Contact</p>
+          <h2 class="mt-2 font-display text-4xl font-700 sm:text-5xl">Send a quick catering note</h2>
+
+          <form class="mt-8 grid gap-5" @submit.prevent="submitForm($event)">
+            <input type="hidden" name="_subject" value="New catering request — Baldinos Rincon" />
+            <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <label class="grid gap-2 text-sm font-800 text-ink/70">
+              Name
+              <input type="text" name="name" required placeholder="Your name" class="rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink focus:border-brand focus:outline-none" />
+            </label>
+            <label class="grid gap-2 text-sm font-800 text-ink/70">
+              Phone or Email
+              <input type="text" name="contact" required placeholder="Best way to reach you" class="rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink focus:border-brand focus:outline-none" />
+            </label>
+            <label class="grid gap-2 text-sm font-800 text-ink/70">
+              Message
+              <textarea name="message" rows="4" required placeholder="Event date, headcount, and what you need" class="resize-y rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink focus:border-brand focus:outline-none"></textarea>
+            </label>
+            <button
+              type="submit"
+              class="rounded-lg bg-brand px-6 py-3 font-800 text-white transition hover:bg-brand-dark disabled:opacity-60"
+              :disabled="sending || sent"
+              x-text="sent ? 'Request Sent ✓' : (sending ? 'Sending…' : 'Send Request')"
+            ></button>
+            <p class="text-sm text-ink/55" x-show="!error" x-cloak>Your request goes straight to the Baldinos Rincon team. We'll reply by phone or email.</p>
+            <p class="text-sm font-700 text-brand" x-show="error" x-cloak x-text="error"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-ink text-white">
+      <div class="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-6 py-9 sm:flex-row sm:px-8">
+        <div>
+          <strong class="font-display text-lg">Baldinos Rincon</strong>
+          <p class="mt-1 max-w-md text-sm text-white/65">
+            Giant Jersey subs, salads, wraps, and catering with friendly local service in Rincon, Georgia.
+          </p>
+        </div>
+        <a href="#home" class="self-start text-sm font-700 text-white/80 hover:text-white">↑ Back to top</a>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

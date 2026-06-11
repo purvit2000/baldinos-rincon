@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 675" role="img" aria-labelledby="title">
+  <title id="title">Cookie tray placeholder</title>
+  <rect width="900" height="675" fill="#fffaf0"/>
+  <rect x="150" y="135" width="600" height="405" rx="8" fill="#e7dccb"/>
+  <g fill="#c2762f">
+    <circle cx="320" cy="280" r="94"/>
+    <circle cx="520" cy="260" r="96"/>
+    <circle cx="410" cy="412" r="102"/>
+    <circle cx="606" cy="408" r="82"/>
+  </g>
+  <g fill="#17211d">
+    <circle cx="292" cy="244" r="13"/>
+    <circle cx="345" cy="300" r="11"/>
+    <circle cx="494" cy="230" r="12"/>
+    <circle cx="548" cy="292" r="13"/>
+    <circle cx="381" cy="388" r="12"/>
+    <circle cx="442" cy="432" r="12"/>
+    <circle cx="620" cy="386" r="11"/>
+  </g>
+</svg>

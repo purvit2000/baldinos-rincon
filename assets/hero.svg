@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Baldinos sub sandwich hero placeholder</title>
+  <desc id="desc">A stylized sub sandwich on a deli counter.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#2d392f"/>
+      <stop offset="0.55" stop-color="#7d1117"/>
+      <stop offset="1" stop-color="#f2b441"/>
+    </linearGradient>
+    <linearGradient id="bread" x1="0" x2="1">
+      <stop offset="0" stop-color="#f7d68c"/>
+      <stop offset="1" stop-color="#c2762f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1210" cy="150" r="250" fill="#fffaf0" opacity=".12"/>
+  <circle cx="1360" cy="700" r="390" fill="#17211d" opacity=".28"/>
+  <path d="M168 640c154-160 446-244 783-218 276 22 440 112 492 221 25 54-13 108-86 125-198 46-573 50-917 16-201-20-337-64-272-144z" fill="#17211d" opacity=".32"/>
+  <path d="M215 559c200-151 675-196 1015-86 150 49 213 113 176 176-56 95-366 118-705 88-348-32-590-97-486-178z" fill="url(#bread)"/>
+  <path d="M250 584c195-106 622-139 918-60 111 30 168 69 158 111-20 79-316 82-626 56-318-27-553-62-450-107z" fill="#fff0bd"/>
+  <path d="M331 603c119-45 233-62 343-48 60 8 104 27 154 38 75 17 171 3 254 14 96 12 171 42 212 79-153 45-487 45-750 20-126-12-214-37-213-103z" fill="#1d6848"/>
+  <path d="M454 574c220-23 561-4 721 52" fill="none" stroke="#b91f24" stroke-width="52" stroke-linecap="round" opacity=".9"/>
+  <path d="M425 621c232-42 542-25 779 39" fill="none" stroke="#f5f0dc" stroke-width="28" stroke-linecap="round" opacity=".95"/>
+  <g fill="#ffffff" opacity=".65">
+    <ellipse cx="476" cy="522" rx="20" ry="8"/>
+    <ellipse cx="604" cy="494" rx="19" ry="7"/>
+    <ellipse cx="768" cy="485" rx="18" ry="8"/>
+    <ellipse cx="933" cy="501" rx="21" ry="8"/>
+    <ellipse cx="1106" cy="536" rx="19" ry="7"/>
+  </g>
+</svg>

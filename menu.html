@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Full menu for Baldinos Giant Jersey Subs in Rincon, GA — cold subs, hot subs, the Big Ones, salads, grilled & toasted, sides, sweets, and kids' meals. 801 S Columbia Ave."
+    />
+    <title>Menu | Baldinos Rincon — Giant Jersey Subs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#16201c",
+              paper: "#fbf6ec",
+              brand: { DEFAULT: "#c0282d", dark: "#7d1117" },
+              gold: "#e8a93a",
+              forest: "#1d6848",
+            },
+            fontFamily: {
+              display: ['Fraunces', 'Georgia', 'serif'],
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              card: "0 18px 50px rgba(22, 32, 28, 0.12)",
+              soft: "0 10px 30px rgba(22, 32, 28, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body class="bg-paper text-ink font-sans antialiased" x-data="menuPage()" x-cloak>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 text-white backdrop-blur-lg">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8">
+        <a href="./index.html#home" class="flex items-center gap-3" aria-label="Baldinos Rincon home">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-brand text-lg font-black ring-2 ring-white/80">B</span>
+          <span class="leading-tight">
+            <strong class="block font-display text-lg font-700">Baldinos</strong>
+            <small class="block text-xs text-white/65">Rincon, Georgia</small>
+          </span>
+        </a>
+        <nav class="hidden items-center gap-7 text-sm font-700 lg:flex">
+          <a href="./menu.html" class="text-gold transition hover:text-white">Menu</a>
+          <a href="./index.html#catering" class="text-white/80 transition hover:text-white">Catering</a>
+          <a href="./index.html#about" class="text-white/80 transition hover:text-white">About</a>
+          <a href="./index.html#reviews" class="text-white/80 transition hover:text-white">Reviews</a>
+          <a href="./index.html#visit" class="text-white/80 transition hover:text-white">Visit</a>
+          <a href="./careers.html" class="text-gold transition hover:text-white">Careers</a>
+        </nav>
+        <a
+          href="https://direct.chownow.com/order/34681/locations/61755"
+          class="rounded-lg bg-brand px-4 py-2.5 text-sm font-800 text-white shadow-[0_10px_22px_rgba(192,40,45,0.3)] transition hover:bg-brand-dark"
+          >Order Online</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="bg-ink px-5 py-16 text-white sm:px-8 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <a href="./index.html" class="text-sm font-700 text-white/60 transition hover:text-white">← Back to home</a>
+          <p class="mt-6 text-xs font-900 uppercase tracking-widest text-gold">Baldinos Rincon</p>
+          <h1 class="mt-2 font-display text-5xl font-900 leading-[0.95] sm:text-6xl lg:text-7xl">Our Menu</h1>
+          <p class="mt-4 max-w-2xl text-lg text-white/80">
+            Every cold sub is served the Baldinos Way — lettuce, onion, tomatoes, vinegar, oil &amp;
+            seasonings. Sizes: <strong class="text-white">Half</strong>,
+            <strong class="text-white">Whole</strong>, and <strong class="text-white">Family</strong>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Category nav (sticky) -->
+      <div class="sticky top-[68px] z-40 border-y border-black/10 bg-paper/95 backdrop-blur">
+        <div class="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-3 sm:px-8">
+          <template x-for="s in sections" :key="s.id">
+            <a
+              :href="'#' + s.id"
+              class="whitespace-nowrap rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-800 text-ink/70 transition hover:border-brand hover:text-brand"
+              x-text="s.label"
+            ></a>
+          </template>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+        <!-- Sections -->
+        <template x-for="s in sections" :key="s.id">
+          <section :id="s.id" class="scroll-mt-36 pb-16">
+            <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-1 border-b-2 border-brand pb-3">
+              <h2 class="font-display text-3xl font-700 sm:text-4xl" x-text="s.label"></h2>
+              <p class="text-sm text-ink/55" x-text="s.note" x-show="s.note"></p>
+            </div>
+
+            <!-- 3-price grid (subs) -->
+            <template x-if="s.priced">
+              <div>
+                <div class="mt-4 hidden grid-cols-[1fr_auto_auto_auto] gap-x-8 px-4 text-xs font-900 uppercase tracking-wider text-ink/40 sm:grid">
+                  <span>Item</span>
+                  <span class="w-14 text-right">Half</span>
+                  <span class="w-14 text-right">Whole</span>
+                  <span class="w-16 text-right">Family</span>
+                </div>
+                <div class="mt-2 grid gap-2">
+                  <template x-for="item in s.items" :key="item.name">
+                    <article class="rounded-xl border border-black/5 bg-white px-4 py-3.5 shadow-soft transition hover:border-brand/30">
+                      <div class="grid items-baseline gap-x-8 gap-y-1 sm:grid-cols-[1fr_auto_auto_auto]">
+                        <div>
+                          <h3 class="font-700" x-text="item.name"></h3>
+                          <p class="text-sm text-ink/55" x-text="item.desc" x-show="item.desc"></p>
+                        </div>
+                        <span class="w-14 text-right font-800 tabular-nums text-ink/80" x-text="item.half || '—'"></span>
+                        <span class="w-14 text-right font-800 tabular-nums text-brand" x-text="item.whole || '—'"></span>
+                        <span class="w-16 text-right font-800 tabular-nums text-ink/80" x-text="item.family || '—'"></span>
+                      </div>
+                    </article>
+                  </template>
+                </div>
+              </div>
+            </template>
+
+            <!-- Single-price cards (salads, sides, kids) -->
+            <template x-if="!s.priced">
+              <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <template x-for="item in s.items" :key="item.name">
+                  <article class="flex flex-col rounded-2xl border border-black/5 bg-white p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <h3 class="font-700" x-text="item.name"></h3>
+                      <span class="whitespace-nowrap font-900 text-brand" x-text="item.price" x-show="item.price"></span>
+                    </div>
+                    <p class="mt-1.5 flex-1 text-sm text-ink/55" x-text="item.desc" x-show="item.desc"></p>
+                    <template x-if="item.prices">
+                      <ul class="mt-3 grid gap-1 border-t border-black/5 pt-3 text-sm">
+                        <template x-for="p in item.prices" :key="p.label">
+                          <li class="flex justify-between">
+                            <span class="text-ink/60" x-text="p.label"></span>
+                            <span class="font-800 tabular-nums text-ink/80" x-text="p.price"></span>
+                          </li>
+                        </template>
+                      </ul>
+                    </template>
+                  </article>
+                </template>
+              </div>
+            </template>
+          </section>
+        </template>
+
+        <!-- Order CTA -->
+        <div class="rounded-3xl bg-brand-dark px-6 py-12 text-center text-white sm:px-12">
+          <h2 class="font-display text-3xl font-700 sm:text-4xl">Ready to order?</h2>
+          <p class="mx-auto mt-3 max-w-xl text-white/80">
+            Order online for fast pickup, or call the shop at
+            <a href="tel:+19122955184" class="font-800 underline">(912) 295-5184</a>.
+          </p>
+          <div class="mt-7 flex flex-wrap justify-center gap-3">
+            <a href="https://direct.chownow.com/order/34681/locations/61755" class="rounded-lg bg-white px-6 py-3 font-800 text-brand-dark transition hover:bg-paper">Order Online</a>
+            <a href="./index.html#contact" class="rounded-lg border border-white/40 px-6 py-3 font-800 text-white transition hover:bg-white/10">Request Catering</a>
+          </div>
+          <p class="mt-6 text-xs text-white/45">
+            Prices and availability may vary by location. Confirm current pricing with the Rincon store.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-ink text-white">
+      <div class="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-6 py-9 sm:flex-row sm:px-8">
+        <div>
+          <strong class="font-display text-lg">Baldinos Rincon</strong>
+          <p class="mt-1 max-w-md text-sm text-white/65">
+            Giant Jersey subs, salads, wraps, and catering with friendly local service in Rincon, Georgia.
+          </p>
+        </div>
+        <a href="./index.html#home" class="self-start text-sm font-700 text-white/80 hover:text-white">← Back to home</a>
+      </div>
+    </footer>
+
+    <script>
+      function menuPage() {
+        return {
+          sections: [
+            {
+              id: "cold-subs",
+              label: "Cold Subs",
+              note: "Served with lettuce, onion, tomatoes, vinegar, oil & seasonings",
+              priced: true,
+              items: [
+                { name: "#1 Pressed Ham & Provolone", half: "$6.69", whole: "$11.49", family: "$17.49" },
+                { name: "#2 Pressed Ham, Provolone & Hard Salami", half: "$7.69", whole: "$12.79", family: "$19.49" },
+                { name: "#3 Boiled Ham, Provolone & Hard Salami", half: "$7.69", whole: "$12.79", family: "$19.49" },
+                { name: "#4 Baldinos Combination", desc: "Pressed ham, boiled ham, extra provolone & salami", half: "$8.39", whole: "$13.99", family: "$21.21" },
+                { name: "#5 Boiled Ham & Provolone", half: "$7.89", whole: "$13.19", family: "$20.09" },
+                { name: "#6 Roast Beef", half: "$8.99", whole: "$15.09", family: "$22.99" },
+                { name: "#7 Baldinos Extra Special", desc: "Thinly sliced pressed & boiled ham, extra provolone, extra salami & cappicola", half: "$8.79", whole: "$14.69", family: "$22.49" },
+                { name: "#8 Boar's Head Premium Turkey Breast", half: "$8.99", whole: "$15.09", family: "$22.99" },
+                { name: "#9 Turkey", desc: "Original turkey roll", half: "$7.99", whole: "$12.59", family: "$19.29" },
+                { name: "#10 Tuna", desc: "Chunk light packed in water, mixed in mayo", half: "$8.19", whole: "$13.69", family: "$20.79" },
+                { name: "#14 American Special", desc: "Turkey, boiled ham & roast beef layers", half: "$8.89", whole: "$14.69", family: "$22.49" },
+                { name: "#15 Italian Special", desc: "Pressed ham, boiled ham, extra provolone, extra salami & pepperoni", half: "$8.89", whole: "$14.69", family: "$22.49" },
+                { name: "#17 The Sicilian", desc: "Triple layers cappicola & pepperoni with provolone", half: "$8.89", whole: "$14.69", family: "$22.49" },
+                { name: "#18 Smoked Turkey Breast & Provolone", half: "$9.09", whole: "$15.19", family: "$23.09" },
+                { name: "#22 Marinated Chicken Salad Sub", desc: "Mixed with mayo", half: "$8.99", whole: "$14.99", family: "$22.99" },
+              ],
+            },
+            {
+              id: "big-ones",
+              label: "The Big Ones",
+              note: "Extra everything",
+              priced: true,
+              items: [
+                { name: "#24 Italian Battalion", desc: "Extra pressed ham, boiled ham, hard salami, cappicola, pepperoni & provolone", half: "$9.49", whole: "$15.89", family: "$24.29" },
+                { name: "#25 American Army", desc: "Extra turkey, boiled ham, roast beef & provolone", half: "$9.49", whole: "$15.89", family: "$24.29" },
+                { name: "#28 US Hero", desc: "Extra pressed ham, boiled ham, hard salami, cappicola, pepperoni, turkey, roast beef & cheese", half: "$10.49", whole: "$18.99", family: "$25.59" },
+              ],
+            },
+            {
+              id: "hot-subs",
+              label: "Hot Subs",
+              priced: true,
+              items: [
+                { name: "#11 Pepper Steak", desc: "Grilled with bell peppers and onions", half: "$10.49", whole: "$12.69" },
+                { name: "#13 Steak", half: "$10.49", whole: "$16.99" },
+                { name: "#19 Steak with Mushrooms", desc: "Grilled with mushrooms and onions", half: "$10.49", whole: "$16.69" },
+                { name: "#20 Chicken Italiano", desc: "Grilled peppers & onions w/ tomato sauce", half: "$8.99", whole: "$14.99" },
+                { name: "#21 Chicken L.T.", desc: "With lettuce, tomatoes (mayo on request)", half: "$8.99", whole: "$14.99" },
+                { name: "#23 Chicken Stir-Fry", desc: "Fresh tomatoes, grilled onions, mushrooms & bell peppers", half: "$9.19", whole: "$15.19" },
+                { name: "#26 Baldinos Cheesesteak", desc: "Cheese, lettuce, onions, tomato, oil & vinegar, grilled onions, mushrooms, bell peppers", half: "$10.49", whole: "$16.99" },
+                { name: "#31 Chicken Bacon Ranch", half: "$10.49", whole: "$16.99" },
+                { name: "#12 Meatballs", desc: "In spicy tomato sauce topped with parmesan", half: "$7.79", whole: "$13.99" },
+                { name: "#16 Baldinos Sausage Italiano", desc: "Sweet Italian sausage, grilled peppers, onions, spicy tomato sauce", half: "$8.59", whole: "$14.49" },
+                { name: "#27 Vegetarian Stir-Fry", desc: "Lettuce, onions, tomatoes, vinegar & oil, grilled onions, mushrooms & peppers", half: "$8.89", whole: "$13.79" },
+              ],
+            },
+            {
+              id: "grilled",
+              label: "Grilled & Toasted",
+              priced: true,
+              items: [
+                { name: "#29 The Hot Italian", desc: "Extra provolone, triple layers cappicola, pepperoni & hard salami", half: "$9.59", whole: "$15.89" },
+                { name: "#30 The Grilled American", desc: "Extra provolone, turkey, smoked turkey, roast beef & hard salami", half: "$9.59", whole: "$15.89" },
+              ],
+            },
+            {
+              id: "salads",
+              label: "Salads",
+              note: "Shredded lettuce, tomatoes, sliced onions, peppers & deli salad w/ roll",
+              priced: false,
+              items: [
+                { name: "Italian", desc: "Boiled ham, salami, cappicola, pepperoni & provolone", price: "$10.59" },
+                { name: "Tuna", desc: "Chunk lite packed in water, mixed in mayo", price: "$9.99" },
+                { name: "American", desc: "Turkey, boiled ham, roast beef & provolone", price: "$9.99" },
+                { name: "Marinated Chicken Salad", desc: "Mixed in mayo", price: "$10.59" },
+                { name: "Grilled Julienne Chicken", desc: "Hot off the grill", price: "$10.59" },
+                { name: "Smoked Turkey or Boar's Head Premium Breast", price: "$10.59" },
+              ],
+            },
+            {
+              id: "sides",
+              label: "Sides & Sweets",
+              priced: false,
+              items: [
+                { name: "Deli Salads", desc: "Pasta, macaroni, or potato", prices: [ { label: "5 oz", price: "$2.99" }, { label: "8 oz", price: "$4.99" }, { label: "16 oz", price: "$6.99" } ] },
+                { name: "Pepperoni Rolls", prices: [ { label: "1", price: "$1.99" }, { label: "3", price: "$5.75" } ] },
+                { name: "Fresh Baked Cookies", prices: [ { label: "1", price: "$1.09" }, { label: "2", price: "$2.14" }, { label: "12", price: "$12.60" } ] },
+                { name: "Dill Pickles", prices: [ { label: "Quarter", price: "$0.75" }, { label: "Half", price: "$1.50" }, { label: "Whole", price: "$2.89" } ] },
+                { name: "Soup of the Day", desc: "Seasonal", prices: [ { label: "Cup", price: "$4.99" }, { label: "Pint", price: "$6.99" } ] },
+                { name: "Potato Chips", price: "$1.69" },
+              ],
+            },
+            {
+              id: "kids",
+              label: "The Bambino Bite",
+              note: "Kids' meals",
+              priced: false,
+              items: [
+                { name: "Ham & Cheese", price: "$4.29" },
+                { name: "Turkey", price: "$4.29" },
+                { name: "Add a Combo", desc: "Drink + chips or cookie", price: "$1.99" },
+              ],
+            },
+          ],
+        };
+      }
+      window.menuPage = menuPage;
+    </script>
+  </body>
+</html>
