@@ -4,6 +4,26 @@ html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background: #c0282d;
+  color: #fff;
+}
+
+/* Hide scrollbars on horizontal scrollers (category pills, review carousel)
+   while keeping them swipeable. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom padding that respects the iPhone home-indicator area. */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.625rem);
+}
+
 /* Hide Alpine-bound markup until Alpine initializes to avoid a flash. */
 [x-cloak] {
   display: none !important;

@@ -8,6 +8,7 @@
       content="Now hiring at Baldinos Giant Jersey Subs in Rincon, GA. Apply online to join our friendly counter, sandwich, and catering team. 801 S Columbia Ave."
     />
     <title>Careers — We're Hiring | Baldinos Rincon</title>
+    <meta name="theme-color" content="#16201c" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,7 +45,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
 
-  <body class="bg-paper text-ink font-sans antialiased" x-data="careers()" x-cloak>
+  <body class="bg-paper text-ink font-sans antialiased pb-[72px] lg:pb-0" x-data="careers()" x-cloak>
     <!-- Header -->
     <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/85 text-white backdrop-blur-lg">
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8">
@@ -73,7 +74,7 @@
 
     <main>
       <!-- Hero -->
-      <section class="relative overflow-hidden bg-ink px-5 py-20 text-white sm:px-8 lg:py-28">
+      <section class="relative overflow-hidden bg-ink px-5 py-14 text-white sm:px-8 sm:py-20 lg:py-28">
         <div class="mx-auto max-w-3xl text-center">
           <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-800 uppercase tracking-widest text-gold">
             <span class="relative flex h-2.5 w-2.5">
@@ -82,10 +83,10 @@
             </span>
             Now Hiring
           </p>
-          <h1 class="font-display text-5xl font-900 leading-[0.95] sm:text-6xl lg:text-7xl">
+          <h1 class="font-display text-4xl font-900 leading-[0.95] sm:text-6xl lg:text-7xl">
             Join the Baldinos Rincon team
           </h1>
-          <p class="mx-auto mt-5 max-w-xl text-lg text-white/85">
+          <p class="mx-auto mt-4 max-w-xl text-base text-white/85 sm:mt-5 sm:text-lg">
             We're looking for friendly, dependable people who love good food and great service.
             Full-time and part-time positions are open at our 801 S Columbia Ave shop.
           </p>
@@ -111,10 +112,10 @@
       </section>
 
       <!-- Application form -->
-      <section class="px-5 py-20 sm:px-8 lg:py-28">
+      <section class="px-5 py-14 sm:px-8 sm:py-20 lg:py-28">
         <div class="mx-auto max-w-2xl">
           <p class="text-xs font-900 uppercase tracking-widest text-brand">Apply Now</p>
-          <h2 class="mt-2 font-display text-4xl font-700 sm:text-5xl">Tell us about yourself</h2>
+          <h2 class="mt-2 font-display text-3xl font-700 sm:text-5xl">Tell us about yourself</h2>
           <p class="mt-3 text-ink/65">
             Fill out the quick application below. It goes straight to the Baldinos Rincon hiring
             team and we'll reach out about next steps.
@@ -203,6 +204,25 @@
         <a href="./index.html#home" class="self-start text-sm font-700 text-white/80 hover:text-white">← Back to home</a>
       </div>
     </footer>
+
+    <!-- Mobile quick actions -->
+    <div class="pb-safe fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white/95 backdrop-blur-lg lg:hidden">
+      <div class="grid grid-cols-2 gap-2.5 px-4 pt-2.5">
+        <a
+          href="tel:+19122955184"
+          class="flex items-center justify-center gap-2 rounded-xl border border-ink/15 bg-white py-3 font-800 text-ink transition active:scale-[0.98]"
+        >
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+          Call
+        </a>
+        <a
+          href="#apply"
+          @click.prevent="document.querySelector('form').scrollIntoView({behavior:'smooth'})"
+          class="flex items-center justify-center rounded-xl bg-brand py-3 font-800 text-white shadow-[0_8px_18px_rgba(192,40,45,0.35)] transition active:scale-[0.98]"
+          >Apply Now</a
+        >
+      </div>
+    </div>
 
     <script>
       function careers() {
