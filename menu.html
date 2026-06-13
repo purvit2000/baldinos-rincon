@@ -126,11 +126,25 @@
                           <h3 class="font-700" x-text="item.name"></h3>
                           <p class="text-sm text-ink/55" x-text="item.desc" x-show="item.desc"></p>
                         </div>
-                        <!-- Mobile: labeled price chips -->
-                        <div class="mt-2.5 flex flex-wrap gap-1.5 sm:hidden">
-                          <span x-show="item.half" class="rounded-full bg-paper px-3 py-1.5 text-xs font-700 text-ink/60">Half <b class="font-900 tabular-nums text-ink" x-text="item.half"></b></span>
-                          <span x-show="item.whole" class="rounded-full bg-brand/10 px-3 py-1.5 text-xs font-700 text-brand">Whole <b class="font-900 tabular-nums" x-text="item.whole"></b></span>
-                          <span x-show="item.family" class="rounded-full bg-paper px-3 py-1.5 text-xs font-700 text-ink/60">Family <b class="font-900 tabular-nums text-ink" x-text="item.family"></b></span>
+                        <!-- Mobile: always-visible size/price strip -->
+                        <div
+                          class="mt-3 grid divide-x divide-black/10 overflow-hidden rounded-lg border border-black/10 bg-paper text-center sm:hidden"
+                          :class="item.family ? 'grid-cols-3' : 'grid-cols-2'"
+                        >
+                          <div class="px-1 py-2">
+                            <span class="block text-[10px] font-900 uppercase tracking-wider text-ink/45">Half</span>
+                            <span class="block font-800 tabular-nums text-ink" x-text="item.half || '—'"></span>
+                          </div>
+                          <div class="bg-brand/5 px-1 py-2">
+                            <span class="block text-[10px] font-900 uppercase tracking-wider text-brand/75">Whole</span>
+                            <span class="block font-800 tabular-nums text-brand" x-text="item.whole || '—'"></span>
+                          </div>
+                          <template x-if="item.family">
+                            <div class="px-1 py-2">
+                              <span class="block text-[10px] font-900 uppercase tracking-wider text-ink/45">Family</span>
+                              <span class="block font-800 tabular-nums text-ink" x-text="item.family"></span>
+                            </div>
+                          </template>
                         </div>
                         <!-- Desktop: aligned columns -->
                         <span class="hidden w-14 text-right font-800 tabular-nums text-ink/80 sm:block" x-text="item.half || '—'"></span>
@@ -224,25 +238,26 @@
           sections: [
             {
               id: "cold-subs",
-              label: "Cold Subs",
-              note: "Served with lettuce, onion, tomatoes, vinegar, oil & seasonings",
+              label: "Deli Fresh — Cold Subs",
+              note: "Served the Baldinos Way — lettuce, tomatoes, onions, oil & vinegar, salt & oregano",
               priced: true,
               items: [
-                { name: "#1 Pressed Ham & Provolone", half: "$6.69", whole: "$11.49", family: "$17.49" },
-                { name: "#2 Pressed Ham, Provolone & Hard Salami", half: "$7.69", whole: "$12.79", family: "$19.49" },
-                { name: "#3 Boiled Ham, Provolone & Hard Salami", half: "$7.69", whole: "$12.79", family: "$19.49" },
-                { name: "#4 Baldinos Combination", desc: "Pressed ham, boiled ham, extra provolone & salami", half: "$8.39", whole: "$13.99", family: "$21.21" },
-                { name: "#5 Boiled Ham & Provolone", half: "$7.89", whole: "$13.19", family: "$20.09" },
-                { name: "#6 Roast Beef", half: "$8.99", whole: "$15.09", family: "$22.99" },
-                { name: "#7 Baldinos Extra Special", desc: "Thinly sliced pressed & boiled ham, extra provolone, extra salami & cappicola", half: "$8.79", whole: "$14.69", family: "$22.49" },
-                { name: "#8 Boar's Head Premium Turkey Breast", half: "$8.99", whole: "$15.09", family: "$22.99" },
-                { name: "#9 Turkey", desc: "Original turkey roll", half: "$7.99", whole: "$12.59", family: "$19.29" },
-                { name: "#10 Tuna", desc: "Chunk light packed in water, mixed in mayo", half: "$8.19", whole: "$13.69", family: "$20.79" },
-                { name: "#14 American Special", desc: "Turkey, boiled ham & roast beef layers", half: "$8.89", whole: "$14.69", family: "$22.49" },
-                { name: "#15 Italian Special", desc: "Pressed ham, boiled ham, extra provolone, extra salami & pepperoni", half: "$8.89", whole: "$14.69", family: "$22.49" },
-                { name: "#17 The Sicilian", desc: "Triple layers cappicola & pepperoni with provolone", half: "$8.89", whole: "$14.69", family: "$22.49" },
-                { name: "#18 Smoked Turkey Breast & Provolone", half: "$9.09", whole: "$15.19", family: "$23.09" },
-                { name: "#22 Marinated Chicken Salad Sub", desc: "Mixed with mayo", half: "$8.99", whole: "$14.99", family: "$22.99" },
+                { name: "#1 Pressed Ham & Provolone", half: "$6.19", whole: "$10.19", family: "$16.39" },
+                { name: "#2 Pressed Ham, Provolone & Salami", half: "$6.99", whole: "$11.49", family: "$18.39" },
+                { name: "#3 Cooked Ham, Provolone & Salami", half: "$6.99", whole: "$11.49", family: "$18.39" },
+                { name: "#4 Baldinos Combo", desc: "Pressed & boiled ham, extra provolone & salami", half: "$7.69", whole: "$12.69", family: "$19.99" },
+                { name: "#5 Cooked Ham & Provolone Cheese", half: "$7.19", whole: "$11.89", family: "$18.89" },
+                { name: "#6 Roast Beef", half: "$8.19", whole: "$13.59", family: "$21.39" },
+                { name: "#7 Baldinos Extra Special", desc: "Pressed & cooked ham, extra provolone, salami & cappicola", half: "$7.89", whole: "$12.99", family: "$20.59" },
+                { name: "#8 Boar's Head Oven Roast Turkey", half: "$8.19", whole: "$13.59", family: "$21.39" },
+                { name: "#9 Turkey Roll", half: "$7.19", whole: "$11.89", family: "$18.89" },
+                { name: "#10 Tuna", desc: "Chunk light, packed in water, mixed in mayo", half: "$7.49", whole: "$12.39", family: "$19.59" },
+                { name: "#14 American Special", desc: "Turkey, cooked ham & roast beef", half: "$7.99", whole: "$13.19", family: "$20.89" },
+                { name: "#15 Italian Special", desc: "Thinly sliced pressed & cooked ham, extra provolone, salami & pepperoni", half: "$7.99", whole: "$13.19", family: "$20.89" },
+                { name: "#17 The Sicilian", desc: "Spiciest Italian of all — triple layers of cappicola & pepperoni w/ provolone", half: "$7.99", whole: "$13.19", family: "$20.89" },
+                { name: "#18 Smoked Turkey & Provolone", half: "$8.19", whole: "$13.59", family: "$21.39" },
+                { name: "#22 Marinated Chicken Salad", desc: "Mixed w/ mayo", half: "$7.89", whole: "$12.99", family: "$20.59" },
+                { name: "Extra Meat", desc: "Per layer", half: "$0.99", whole: "$1.69", family: "$2.59" },
               ],
             },
             {
@@ -251,27 +266,27 @@
               note: "Extra everything",
               priced: true,
               items: [
-                { name: "#24 Italian Battalion", desc: "Extra pressed ham, boiled ham, hard salami, cappicola, pepperoni & provolone", half: "$9.49", whole: "$15.89", family: "$24.29" },
-                { name: "#25 American Army", desc: "Extra turkey, boiled ham, roast beef & provolone", half: "$9.49", whole: "$15.89", family: "$24.29" },
-                { name: "#28 US Hero", desc: "Extra pressed ham, boiled ham, hard salami, cappicola, pepperoni, turkey, roast beef & cheese", half: "$10.49", whole: "$18.99", family: "$25.59" },
+                { name: "#24 Italian Battalion", desc: "Extra pressed & cooked ham, salami, cappicola, pepperoni & provolone", half: "$8.69", whole: "$14.39", family: "$22.59" },
+                { name: "#25 American Army", desc: "Extra turkey, cooked ham, roast beef & provolone", half: "$8.69", whole: "$14.39", family: "$22.59" },
+                { name: "#28 US Hero", desc: "Extra pressed & cooked ham, salami, cappicola, pepperoni, turkey, roast beef & cheese", half: "$9.19", whole: "$15.29", family: "$23.89" },
               ],
             },
             {
               id: "hot-subs",
-              label: "Hot Subs",
+              label: "Hot & Grilled",
+              note: "Half & whole only · add cheese or mushrooms +$0.69",
               priced: true,
               items: [
-                { name: "#11 Pepper Steak", desc: "Grilled with bell peppers and onions", half: "$10.49", whole: "$12.69" },
-                { name: "#13 Steak", half: "$10.49", whole: "$16.99" },
-                { name: "#19 Steak with Mushrooms", desc: "Grilled with mushrooms and onions", half: "$10.49", whole: "$16.69" },
-                { name: "#20 Chicken Italiano", desc: "Grilled peppers & onions w/ tomato sauce", half: "$8.99", whole: "$14.99" },
-                { name: "#21 Chicken L.T.", desc: "With lettuce, tomatoes (mayo on request)", half: "$8.99", whole: "$14.99" },
-                { name: "#23 Chicken Stir-Fry", desc: "Fresh tomatoes, grilled onions, mushrooms & bell peppers", half: "$9.19", whole: "$15.19" },
-                { name: "#26 Baldinos Cheesesteak", desc: "Cheese, lettuce, onions, tomato, oil & vinegar, grilled onions, mushrooms, bell peppers", half: "$10.49", whole: "$16.99" },
-                { name: "#31 Chicken Bacon Ranch", half: "$10.49", whole: "$16.99" },
-                { name: "#12 Meatballs", desc: "In spicy tomato sauce topped with parmesan", half: "$7.79", whole: "$13.99" },
-                { name: "#16 Baldinos Sausage Italiano", desc: "Sweet Italian sausage, grilled peppers, onions, spicy tomato sauce", half: "$8.59", whole: "$14.49" },
-                { name: "#27 Vegetarian Stir-Fry", desc: "Lettuce, onions, tomatoes, vinegar & oil, grilled onions, mushrooms & peppers", half: "$8.89", whole: "$13.79" },
+                { name: "#11 Pepper Steak", desc: "Grilled w/ peppers & onions", half: "$8.19", whole: "$13.49" },
+                { name: "#13 Steak", desc: "w/ lettuce, tomato & grilled onions", half: "$8.19", whole: "$13.49" },
+                { name: "#19 Steak w/ Mushrooms", desc: "& grilled onions", half: "$8.19", whole: "$13.49" },
+                { name: "#26 Baldinos Cheesesteak", desc: "Cheese, lettuce, onions, tomato, oil & vinegar, grilled onions, mushrooms & peppers", half: "$8.99", whole: "$14.79" },
+                { name: "#20 Chicken Italiano", desc: "Peppers & onions w/ tomato sauce", half: "$7.89", whole: "$12.99" },
+                { name: "#21 Chicken L.T.", desc: "w/ lettuce & tomatoes", half: "$7.89", whole: "$12.99" },
+                { name: "#23 Chicken Stir-Fry", desc: "w/ tomatoes, onions, mushrooms & peppers", half: "$8.09", whole: "$13.39" },
+                { name: "#12 Meatballs", desc: "Spicy tomato sauce w/ parmesan", half: "$7.19", whole: "$11.89" },
+                { name: "#16 Baldinos Sausage Italiano", desc: "Sweet Italian sausage, peppers, onions w/ spicy tomato sauce", half: "$7.99", whole: "$13.19" },
+                { name: "#27 Vegetarian Stir-Fry", desc: "Lettuce, onions, tomatoes, oil & vinegar, grilled onions, mushrooms & peppers", half: "$6.99", whole: "$11.49" },
               ],
             },
             {
@@ -279,22 +294,23 @@
               label: "Grilled & Toasted",
               priced: true,
               items: [
-                { name: "#29 The Hot Italian", desc: "Extra provolone, triple layers cappicola, pepperoni & hard salami", half: "$9.59", whole: "$15.89" },
-                { name: "#30 The Grilled American", desc: "Extra provolone, turkey, smoked turkey, roast beef & hard salami", half: "$9.59", whole: "$15.89" },
+                { name: "#29 The Hot Italian", desc: "Extra provolone, cappicola, pepperoni & hard salami", half: "$8.19", whole: "$13.49" },
+                { name: "#30 The Grilled American", desc: "Extra provolone, turkey, smoked turkey, roast beef & hard salami", half: "$8.19", whole: "$13.49" },
               ],
             },
             {
               id: "salads",
-              label: "Salads",
-              note: "Shredded lettuce, tomatoes, sliced onions, peppers & deli salad w/ roll",
+              label: "Salad Plates",
+              note: "Shredded lettuce, tomatoes, onions, peppers & deli salad w/ roll, topped w/ choice of",
               priced: false,
               items: [
-                { name: "Italian", desc: "Boiled ham, salami, cappicola, pepperoni & provolone", price: "$10.59" },
-                { name: "Tuna", desc: "Chunk lite packed in water, mixed in mayo", price: "$9.99" },
-                { name: "American", desc: "Turkey, boiled ham, roast beef & provolone", price: "$9.99" },
-                { name: "Marinated Chicken Salad", desc: "Mixed in mayo", price: "$10.59" },
-                { name: "Grilled Julienne Chicken", desc: "Hot off the grill", price: "$10.59" },
-                { name: "Smoked Turkey or Boar's Head Premium Breast", price: "$10.59" },
+                { name: "Tuna", desc: "Chunk light, packed in water, mixed in mayo", price: "$7.99" },
+                { name: "American", desc: "Turkey, cooked ham, roast beef & provolone", price: "$7.99" },
+                { name: "Italian", desc: "Cooked ham, pepperoni, salami, cappicola & provolone", price: "$7.99" },
+                { name: "Boar's Head Premium or Smoked Turkey", price: "$8.49" },
+                { name: "Marinated Chicken Salad", desc: "Mixed in mayo", price: "$8.49" },
+                { name: "Grilled Julienne Chicken", desc: "Hot off the grill", price: "$8.49" },
+                { name: "Extra Dressing", price: "$0.50" },
               ],
             },
             {
@@ -302,23 +318,32 @@
               label: "Sides & Sweets",
               priced: false,
               items: [
-                { name: "Deli Salads", desc: "Pasta, macaroni, or potato", prices: [ { label: "5 oz", price: "$2.99" }, { label: "8 oz", price: "$4.99" }, { label: "16 oz", price: "$6.99" } ] },
-                { name: "Pepperoni Rolls", prices: [ { label: "1", price: "$1.99" }, { label: "3", price: "$5.75" } ] },
-                { name: "Fresh Baked Cookies", prices: [ { label: "1", price: "$1.09" }, { label: "2", price: "$2.14" }, { label: "12", price: "$12.60" } ] },
-                { name: "Dill Pickles", prices: [ { label: "Quarter", price: "$0.75" }, { label: "Half", price: "$1.50" }, { label: "Whole", price: "$2.89" } ] },
-                { name: "Soup of the Day", desc: "Seasonal", prices: [ { label: "Cup", price: "$4.99" }, { label: "Pint", price: "$6.99" } ] },
-                { name: "Potato Chips", price: "$1.69" },
+                { name: "Soup of the Day", desc: "Seasonal", prices: [ { label: "Cup", price: "$2.49" }, { label: "Pint", price: "$4.69" } ] },
+                { name: "Deli Salads", desc: "Pasta, macaroni & potato", prices: [ { label: "5 oz", price: "$1.79" }, { label: "8 oz", price: "$2.59" }, { label: "16 oz", price: "$4.89" } ] },
+                { name: "Dill Pickles", prices: [ { label: "Quarter", price: "$0.59" }, { label: "Half", price: "$0.89" }, { label: "Whole", price: "$1.49" } ] },
+                { name: "Chips", price: "$1.59" },
+                { name: "Pepperoni Rolls", prices: [ { label: "1", price: "$1.99" }, { label: "3", price: "$3.99" } ] },
+                { name: "Gourmet Cookies", prices: [ { label: "1", price: "$1.09" }, { label: "3", price: "$2.99" }, { label: "6", price: "$5.59" } ] },
+              ],
+            },
+            {
+              id: "drinks",
+              label: "Sub Chasers",
+              priced: false,
+              items: [
+                { name: "Fountain Products & Iced Tea", desc: "Coca-Cola products", prices: [ { label: "20 oz", price: "$2.29" }, { label: "32 oz", price: "$2.49" } ] },
               ],
             },
             {
               id: "kids",
               label: "The Bambino Bite",
-              note: "Kids' meals",
+              note: "For kids 12 & under",
               priced: false,
               items: [
-                { name: "Ham & Cheese", price: "$4.29" },
-                { name: "Turkey", price: "$4.29" },
-                { name: "Add a Combo", desc: "Drink + chips or cookie", price: "$1.99" },
+                { name: "For the Kids", desc: "Ham & cheese or turkey", price: "$3.99" },
+                { name: "Dress It Up", desc: "Add lettuce, onions, tomatoes, oil & vinegar", price: "Free" },
+                { name: "Extra Meat", desc: "Per layer", price: "$0.99" },
+                { name: "Go Combo", desc: "Drink, chips & cookie", price: "+$2.49" },
               ],
             },
           ],
