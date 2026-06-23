@@ -121,6 +121,24 @@
             team and we'll reach out about next steps.
           </p>
 
+          <!-- Downloadable employment application -->
+          <div class="mt-6 flex flex-col gap-4 rounded-2xl border border-brand/20 bg-brand/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <strong class="block font-800 text-ink">Employment application (required)</strong>
+              <span class="text-sm text-ink/65">
+                Download our application form, fill it out, then attach the completed PDF in the form below.
+              </span>
+            </div>
+            <a
+              href="./Employment-Job-Application.pdf"
+              download
+              class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 font-800 text-white transition hover:bg-brand-dark"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M3.75 18.75h16.5"/></svg>
+              Download PDF
+            </a>
+          </div>
+
           <!-- Success state -->
           <div
             x-show="sent"
@@ -138,9 +156,14 @@
           <form
             x-show="!sent"
             class="mt-8 grid gap-5"
-            @submit.prevent="submitApplication($event)"
+            method="POST"
+            action="https://formsubmit.co/rinconbaldinos@gmail.com"
+            enctype="multipart/form-data"
           >
             <input type="hidden" name="_subject" value="New job application — Baldinos Rincon" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" x-ref="next" />
             <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="grid gap-5 sm:grid-cols-2">
@@ -160,34 +183,22 @@
             </label>
 
             <label class="grid gap-2 text-sm font-800 text-ink/70">
-              Availability
-              <select name="Availability" required class="rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink focus:border-brand focus:outline-none">
-                <option value="">Select availability</option>
-                <option>Full-time</option>
-                <option>Part-time</option>
-                <option>Weekends only</option>
-                <option>Flexible</option>
-              </select>
-            </label>
-
-            <label class="grid gap-2 text-sm font-800 text-ink/70">
-              Earliest start date
-              <input type="date" name="Earliest start date" class="rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink focus:border-brand focus:outline-none" />
-            </label>
-
-            <label class="grid gap-2 text-sm font-800 text-ink/70">
-              Experience &amp; why you'd be a great fit
-              <textarea name="Experience" rows="4" placeholder="Tell us about any food-service or customer-service experience." class="resize-y rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink focus:border-brand focus:outline-none"></textarea>
+              Completed application (PDF)
+              <input
+                type="file"
+                name="attachment"
+                accept="application/pdf,.pdf"
+                required
+                class="rounded-lg border border-black/10 bg-white px-4 py-3 font-500 text-ink file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-brand/10 file:px-4 file:py-2 file:font-700 file:text-brand focus:border-brand focus:outline-none"
+              />
+              <span class="text-xs font-500 text-ink/50">Attach the application form you downloaded and filled out.</span>
             </label>
 
             <button
               type="submit"
-              class="rounded-lg bg-brand px-6 py-3 font-800 text-white transition hover:bg-brand-dark disabled:opacity-60"
-              :disabled="sending"
-              x-text="sending ? 'Submitting…' : 'Submit Application'"
-            ></button>
-            <p class="text-sm text-ink/55" x-show="!error">Your application is sent directly to the Baldinos Rincon hiring team.</p>
-            <p class="text-sm font-700 text-brand" x-show="error" x-cloak x-text="error"></p>
+              class="rounded-lg bg-brand px-6 py-3 font-800 text-white transition hover:bg-brand-dark"
+            >Submit Application</button>
+            <p class="text-sm text-ink/55">Your application and attached form go straight to the Baldinos Rincon hiring team.</p>
           </form>
         </div>
       </section>
@@ -227,36 +238,24 @@
     <script>
       function careers() {
         return {
-          sending: false,
           sent: false,
-          error: "",
 
-          // Submits the application to the hiring inbox via FormSubmit's AJAX
-          // endpoint (delivers to p.purvit2000@gmail.com). No backend required.
-          async submitApplication(event) {
-            if (this.sending) return;
-            this.error = "";
-            this.sending = true;
-
-            try {
-              const response = await fetch(
-                "https://formsubmit.co/ajax/p.purvit2000@gmail.com",
-                {
-                  method: "POST",
-                  headers: { Accept: "application/json" },
-                  body: new FormData(event.target),
-                }
-              );
-
-              if (!response.ok) throw new Error("bad status");
-
-              this.sending = false;
+          // The form posts the application (and the attached PDF) straight to the
+          // hiring inbox via FormSubmit's standard multipart endpoint — file
+          // attachments aren't supported over the AJAX endpoint, so this uses a
+          // native submit. FormSubmit redirects back here with ?sent=1, which we
+          // use to show the in-page success state.
+          init() {
+            const params = new URLSearchParams(location.search);
+            if (params.get("sent") === "1") {
               this.sent = true;
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            } catch (err) {
-              this.sending = false;
-              this.error =
-                "Sorry — something went wrong submitting your application. Please call (912) 295-5184.";
+              history.replaceState(null, "", location.pathname);
+              window.scrollTo({ top: 0 });
+            }
+            // _next must be an absolute URL; point it back to this page.
+            if (this.$refs.next) {
+              this.$refs.next.value =
+                location.origin + location.pathname + "?sent=1";
             }
           },
         };

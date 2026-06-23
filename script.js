@@ -115,7 +115,7 @@ function site() {
     ],
 
     // Submits the catering form to the store inbox via FormSubmit's AJAX
-    // endpoint (delivers to p.purvit2000@gmail.com). No backend required.
+    // endpoint (delivers to rinconbaldinos@gmail.com). No backend required.
     async submitForm(event) {
       if (this.sending) return;
       this.error = "";
@@ -123,7 +123,7 @@ function site() {
 
       try {
         const response = await fetch(
-          "https://formsubmit.co/ajax/p.purvit2000@gmail.com",
+          "https://formsubmit.co/ajax/rinconbaldinos@gmail.com",
           {
             method: "POST",
             headers: { Accept: "application/json" },
