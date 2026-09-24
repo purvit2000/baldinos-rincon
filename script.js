@@ -14,7 +14,6 @@ function site() {
     tabs: [
       { id: "subs", label: "Subs" },
       { id: "salads", label: "Salads" },
-      { id: "catering", label: "Catering" },
     ],
 
     menu: {
@@ -22,20 +21,20 @@ function site() {
         {
           name: "#24 Italian Battalion",
           desc: "Extra pressed & cooked ham, salami, cappicola, pepperoni & provolone.",
-          price: "from $8.69",
-          img: "./assets/sub-italian.jpg",
+          price: "Half $8.69",
+          img: "./assets/italian-battalion.webp",
         },
         {
           name: "#19 Steak with Mushrooms",
           desc: "Grilled steak, mushrooms & grilled onions on warm bread.",
-          price: "from $8.19",
-          img: "./assets/sub-steak.jpg",
+          price: "Half $8.19",
+          img: "./assets/steak-mushrooms.webp",
         },
         {
           name: "#18 Smoked Turkey & Provolone",
           desc: "Smoked turkey breast and provolone, served the Baldinos Way.",
-          price: "from $8.19",
-          img: "./assets/sub-turkey.jpg",
+          price: "Half $8.19",
+          img: "./assets/smoked-turkey-provolone.webp",
         },
       ],
       salads: [
@@ -43,39 +42,13 @@ function site() {
           name: "Italian Salad Plate",
           desc: "Cooked ham, pepperoni, salami, cappicola & provolone over greens.",
           price: "$7.99",
-          img: "./assets/salad-garden.jpg",
+          img: "./assets/italian-salad-plate.webp",
         },
         {
           name: "American Salad Plate",
           desc: "Turkey, cooked ham, roast beef & provolone over greens.",
           price: "$7.99",
-          img: "./assets/salad-chef.jpg",
-        },
-        {
-          name: "Grilled Julienne Chicken",
-          desc: "Hot-off-the-grill chicken over crisp greens with deli salad & roll.",
-          price: "$8.49",
-          img: "./assets/salad-chicken.jpg",
-        },
-      ],
-      catering: [
-        {
-          name: "Sub Platter",
-          desc: "Assorted favorites cut for sharing — perfect for offices and gatherings.",
-          price: "Call for pricing",
-          img: "./assets/catering-platter.jpg",
-        },
-        {
-          name: "Boxed Lunches",
-          desc: "A sub, chips, cookie, and drink packaged for meetings or field days.",
-          price: "Call for pricing",
-          img: "./assets/catering-boxed.jpg",
-        },
-        {
-          name: "Dessert Tray",
-          desc: "Warm cookies and shareable sweets to round out the table.",
-          price: "Call for pricing",
-          img: "./assets/dessert.jpg",
+          img: "./assets/american-salad-plate.webp",
         },
       ],
     },
@@ -117,9 +90,11 @@ function site() {
     // Submits the catering form to the store inbox via FormSubmit's AJAX
     // endpoint (delivers to rinconbaldinos@gmail.com). No backend required.
     async submitForm(event) {
-      if (this.sending) return;
+      if (this.sending || this.sent) return;
       this.error = "";
       this.sending = true;
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 15000);
 
       try {
         const response = await fetch(
@@ -128,10 +103,15 @@ function site() {
             method: "POST",
             headers: { Accept: "application/json" },
             body: new FormData(event.target),
+            signal: controller.signal,
           }
         );
 
         if (!response.ok) throw new Error("bad status");
+        const result = await response.json();
+        if (result.success !== true && result.success !== "true") {
+          throw new Error("request rejected");
+        }
 
         this.sending = false;
         this.sent = true;
@@ -143,6 +123,9 @@ function site() {
         this.sending = false;
         this.error =
           "Sorry — something went wrong sending your request. Please call (912) 295-5184.";
+      } finally {
+        window.clearTimeout(timeout);
+        this.sending = false;
       }
     },
   };

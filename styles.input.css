@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal helpers — layout/styling is handled by Tailwind utility classes. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #c0282d;
+  color: #fff;
+}
+
+/* Hide scrollbars on horizontal scrollers (category pills, review carousel)
+   while keeping them swipeable. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom padding that respects the iPhone home-indicator area. */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.625rem);
+}
+
+/* Hide Alpine-bound markup until Alpine initializes to avoid a flash. */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: #16201c;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+:focus-visible { outline: 3px solid #c0282d; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Native file controls must be allowed to shrink inside mobile form grids. */
+form > *, form label, form input, form textarea { min-width: 0; }
+form input, form textarea { width: 100%; }
