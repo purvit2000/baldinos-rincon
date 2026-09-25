@@ -19,7 +19,7 @@
     />
 
     <link rel="stylesheet" href="./styles.css?v=afa82e3c" />
-    <script defer src="./script.js"></script>
+    <script defer src="./script.js?v=4b03f151"></script>
     <script defer src="./assets/vendor/alpine.min.js"></script>
   </head>
 
@@ -202,6 +202,7 @@
             <p class="mt-3 text-ink/65">
               The Baldinos Way includes lettuce, onion, tomato, oil &amp; vinegar, and seasoning.
               Mayo, mustard, hot peppers, and sweet peppers are available on request.
+              Any sandwich can be made as a wrap on request.
             </p>
             <a href="./menu.html" class="mt-4 inline-flex items-center gap-2 font-extrabold text-brand transition hover:gap-3">
               View the full menu <span aria-hidden="true">→</span>
@@ -237,11 +238,12 @@
                   loading="lazy"
                   decoding="async"
                   class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105 sm:aspect-[4/3]"
+                  :style="item.imgPosition ? 'object-position: ' + item.imgPosition : ''"
                 />
                 <div class="p-5">
                   <div class="flex items-start justify-between gap-3">
                     <h3 class="text-lg font-bold" x-text="item.name"></h3>
-                    <span class="whitespace-nowrap font-black text-brand" x-text="item.price"></span>
+                    <span class="whitespace-nowrap font-black text-brand" x-text="item.price" x-show="item.price"></span>
                   </div>
                   <p class="mt-1.5 text-sm text-ink/70" x-text="item.desc"></p>
                 </div>
@@ -255,7 +257,7 @@
       <section id="catering" class="scroll-mt-24 bg-forest text-white">
         <div class="mx-auto grid max-w-7xl items-stretch lg:grid-cols-2">
           <div class="relative min-h-[340px]">
-            <img src="./assets/catering-spread.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Baldinos catering spread being plated" class="absolute inset-0 h-full w-full object-cover" />
+            <img src="./assets/catering-subs.webp" width="1350" height="1800" loading="lazy" decoding="async" alt="Assorted Baldinos subs prepared for catering" class="absolute inset-0 h-full w-full object-cover" />
           </div>
           <div class="px-5 py-12 sm:px-12 sm:py-14 lg:py-20">
             <p class="text-xs font-black uppercase tracking-widest text-white">Catering</p>

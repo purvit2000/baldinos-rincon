@@ -10,3 +10,7 @@
 node_modules/
 test-results/
 playwright-report/
+
+# Local source photos; optimized WebP copies are published.
+assets/Catering.jpeg
+assets/Wrap Cut in Half.jpg

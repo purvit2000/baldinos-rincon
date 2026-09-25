@@ -50,6 +50,12 @@ function site() {
           price: "$7.99",
           img: "./assets/american-salad-plate.webp",
         },
+        {
+          name: "Make It a Wrap",
+          desc: "Any sandwich can be made as a wrap on request.",
+          img: "./assets/wrap-cut.webp",
+          imgPosition: "center 18%",
+        },
       ],
     },
 

@@ -44,7 +44,7 @@ test('mobile navigation and menu category filters', async ({ page }) => {
   await expect(page.locator('#mobile-nav')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#mobile-nav')).toBeHidden();
-  for (const [name, item, count] of [['Salads', 'Italian Salad Plate', 2], ['Subs', '#24 Italian Battalion', 3]]) {
+  for (const [name, item, count] of [['Salads', 'Make It a Wrap', 3], ['Subs', '#24 Italian Battalion', 3]]) {
     const button = page.getByRole('button', { name, exact: true });
     await button.click();
     await expect(button).toHaveAttribute('aria-pressed', 'true');
