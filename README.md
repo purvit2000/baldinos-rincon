@@ -1,6 +1,6 @@
 # Baldinos Rincon website
 
-Static three-page website. Serve the project root; no application server is required.
+Static three-page website. The build prepares a deployable `dist/` folder; no application server is required.
 
 ## Develop and validate
 
@@ -15,17 +15,13 @@ npm test
 
 Open http://127.0.0.1:4173. Browser tests use an installed Google Chrome and start a preview server automatically when one is not running. All form submissions in the tests are intercepted; no emails or applications are sent.
 
-Edit `styles.input.css` for custom CSS and `tailwind.config.cjs` for design tokens. Run `npm run build` after editing HTML utility classes or dependencies. The build scans all three HTML pages and `script.js`, produces minified `styles.css`, and copies the pinned Alpine runtime into `assets/vendor`. Commit these generated files: production requires no Node runtime or CDN compiler.
+Edit `styles.input.css` for custom CSS and `tailwind.config.cjs` for design tokens. Run `npm run build` after editing HTML utility classes or dependencies. The build scans all three HTML pages and `script.js`, produces minified `styles.css`, copies the pinned Alpine runtime into `assets/vendor`, and assembles only the public website files in `dist/`. Commit the generated CSS and Alpine runtime; production requires no Node runtime or CDN compiler.
 
-Deploy the three HTML files, `styles.css`, `script.js`, `assets/`, and `Employment-Job-Application.pdf`. Do not publish `node_modules`, tests, tooling, or Git metadata. Configure compression and sensible cache headers with the chosen host; hosting configuration is not included here.
+Cloudflare Workers deploys the `dist/` folder through `wrangler.jsonc`. The existing Cloudflare build command `npm run build` and deploy command `npx wrangler deploy` can remain as they are. `node_modules`, tests, source photos, tooling, and Git metadata are never copied into `dist/`.
 
 ## Images
 
-The original JPEGs are retained as source assets. Pages use WebP derivatives, generated with `cwebp` at quality 78:
-
-```sh
-for image in assets/*.jpg; do cwebp -q 78 "$image" -o "${image%.jpg}.webp"; done
-```
+The website uses optimized WebP images. Original source photos are retained separately in `baldinos images/` and the two ignored files in `assets/`. Unused display images have been removed from `assets/`. If a new image is added to a page, add it to the file list in `tools/build-static.cjs` so it is included in the deployed site.
 
 ## Performance measurement
 
