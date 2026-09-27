@@ -1,5 +1,3 @@
-import { getGoogleReviews } from './google-reviews.mjs';
-
 // Anonymous counts only. Never log request objects, headers, or form payloads.
 const actions = new Set([
   'call_click', 'order_click', 'directions_click', 'catering_click',
@@ -42,7 +40,6 @@ export async function recordEvent(request, log = console.log) {
 export default {
   async fetch(request, env) {
     if (new URL(request.url).pathname === '/events') return recordEvent(request);
-    if (new URL(request.url).pathname === '/api/google-reviews') return getGoogleReviews(request, env);
     return env.ASSETS.fetch(request);
   },
 };

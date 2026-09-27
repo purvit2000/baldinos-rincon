@@ -2,12 +2,12 @@
 
 Implemented against the numbered findings in `WEBSITE-AUDIT-2026-09-27.md`. The user excluded **1, 4, 5, 6, 8, 12, and 24**. Those exclusions were preserved: the PDF, store hours, Google Business Profile, privacy-notice scope, catering offerings, hiring requirements, and maintenance/optional-branding work were not changed. The existing public application PDF is byte-for-byte identical to the Git version (SHA-256 `6d9e6a3e44df5c4b1aaeb50fb0412583b465a0d8e0e810f4cf90d88cfb0ee838`).
 
-The owner authorized committing, pushing, and publishing these changes. The existing GitHub-to-Cloudflare Workers Builds integration publishes `main`. No messages or applications were sent to the restaurant; delivery tests used only local simulations. Google review activation and Search Console account work remain pending as detailed below.
+The owner authorized committing, pushing, and publishing these changes. The existing GitHub-to-Cloudflare Workers Builds integration publishes `main`. No messages or applications were sent to the restaurant; delivery tests used only local simulations. Search Console account work remains pending as detailed below.
 
 | Audit item | Implementation and status |
 | --- | --- |
 | 2 — Prices | Updated the prices found in the current Rincon ChowNow menu, including 72 sub size prices. Per the owner’s later instruction, preserved the original prices for unlisted items, sizes, and add-ons. Homepage prices agree with the full menu. See `PRICE-UPDATE-2026-09-27.md`. Online/in-store difference notices remain visible. |
-| 3 — Reviews | Removed static ratings and quotes. Implemented the official Google Places endpoint and attributed review cards, with fresh data on page visits and a direct Google listing fallback. **Activation remains pending the owner’s API key, verified Place ID, Google Cloud billing/quota setup, and required public notices.** Item 6 remains excluded pending clarification. No paid Google API requests or fake customer reviews are published. See `GOOGLE-REVIEWS-SETUP.md`. |
+| 3 — Reviews | Per the owner’s later instruction, replaced the separate reviews section and API integration with one static **4.5-star / 55-review** badge at the top. The badge and navigation review links open the verified Google Maps reviews tab directly. These display figures were supplied by the owner; they are not presented as an automatically refreshed count. No API key or Google billing setup is required. |
 | 7 — Real delivery | Local catering success/failure and application upload/redirect simulations pass. **Real inbox receipt, spam-folder placement, attachment receipt, and reply behavior remain unverified** pending the owner's response to the live-test question. |
 | 9 — Mobile navigation | Added the same native expandable navigation to home, menu, careers, and 404 pages. Links close the menu; Escape closes it and returns focus. Native disclosure still works without JavaScript. |
 | 10 — Sticky overlap | Category navigation uses the measured header height. At 320px, the header ends at y=69 and category navigation starts at y=69; category headings remain below it after scrolling. |
@@ -42,8 +42,8 @@ The owner authorized committing, pushing, and publishing these changes. The exis
 
 ## External completion steps
 
-1. Complete Google reviews activation using `GOOGLE-REVIEWS-SETUP.md`. The API credentials are unavailable, and the required notices conflict with excluded item 6 until the owner resolves that instruction. The site remains useful with a direct Google listing link.
-2. Cloudflare publishing already runs through GitHub; no separate Cloudflare login is needed to push normal website changes. Account access is still needed for configuring the future Google API secret. Production routes and assets should be checked after the deployment completes.
+1. Google reviews no longer require activation: the owner requested a static badge and direct link. The previous API endpoint, rate-limit binding, synthetic preview fixtures, and setup guide were removed.
+2. Cloudflare publishing already runs through GitHub; no separate Cloudflare login is needed to push normal website changes. Production routes and assets should be checked after the deployment completes.
 3. Complete the clearly labeled real catering and blank-PDF application tests with the receiving inbox available. Confirm receipt, attachment, spam placement, and reply-to routing. The owner's earlier test-coordination question is still pending.
 4. Sign into [Search Console](https://search.google.com/search-console) for the domain, verify ownership, submit `https://rinconbaldinos.com/sitemap.xml`, and inspect the three canonical pages. This does not modify the excluded Google Business Profile.
 5. Supply an authentic storefront photo and confirmed parking/entrance details if those portions of item 17 are to be completed.
@@ -54,3 +54,7 @@ The owner authorized committing, pushing, and publishing these changes. The exis
 - [Google listing used in the audit](https://www.google.com/maps/search/?api=1&query=Baldinos%20Giant%20Jersey%20Subs%20801%20S%20Columbia%20Ave%20Rincon%20GA%2031326) — direct listing link; static review excerpts and dated ratings were removed.
 - [Cloudflare static asset headers](https://developers.cloudflare.com/workers/static-assets/headers/) — cache and response-header configuration.
 - [Cloudflare Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/) — logging, invocation-log setting, and plan-dependent retention.
+
+## Follow-up: static review badge
+
+The owner requested a static 4.5-star / 55-review preview at the top, linked directly to Google reviews, and removal of the separate review section. The direct reviews-tab destination was verified in Google Maps. Google showed 50 reviews during this check; the requested 55 is the owner-supplied static display value. The original API validation listed above describes the earlier implementation; those four tests were removed with the unused API. The remaining ten checks, build, responsive badge layout, link destination, and live deployment are checked for this follow-up.

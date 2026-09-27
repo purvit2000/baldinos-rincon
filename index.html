@@ -73,7 +73,7 @@
         <nav aria-label="Main navigation" class="hidden items-center gap-7 text-sm font-bold lg:flex"><a href="/menu" class="text-white/85 hover:text-white">Menu</a>
 <a href="/#catering" class="text-white/85 hover:text-white">Catering</a>
 <a href="/#about" class="text-white/85 hover:text-white">About</a>
-<a href="/#reviews" class="text-white/85 hover:text-white">Reviews</a>
+<a href="https://www.google.com/maps/place/Rincon+Baldinos+-+Giant+Jersey+Subs/@32.2628851,-81.2202343,17z/data=!4m8!3m7!1s0x88fbbd0230e6526d:0x197abf76655cce2f!8m2!3d32.2628851!4d-81.2202343!9m1!1b1!16s%2Fg%2F11y8wvrb37" class="text-white/85 hover:text-white">Reviews</a>
 <a href="/#visit" class="text-white/85 hover:text-white">Visit</a>
 <a href="/careers" class="text-white/85 hover:text-white">Careers</a></nav>
         <div class="flex items-center gap-3">
@@ -86,7 +86,7 @@
               <a href="/menu" class="block rounded-lg px-4 py-3 hover:bg-white/10">Menu</a>
 <a href="/#catering" class="block rounded-lg px-4 py-3 hover:bg-white/10">Catering</a>
 <a href="/#about" class="block rounded-lg px-4 py-3 hover:bg-white/10">About</a>
-<a href="/#reviews" class="block rounded-lg px-4 py-3 hover:bg-white/10">Reviews</a>
+<a href="https://www.google.com/maps/place/Rincon+Baldinos+-+Giant+Jersey+Subs/@32.2628851,-81.2202343,17z/data=!4m8!3m7!1s0x88fbbd0230e6526d:0x197abf76655cce2f!8m2!3d32.2628851!4d-81.2202343!9m1!1b1!16s%2Fg%2F11y8wvrb37" class="block rounded-lg px-4 py-3 hover:bg-white/10">Reviews</a>
 <a href="/#visit" class="block rounded-lg px-4 py-3 hover:bg-white/10">Visit</a>
 <a href="/careers" class="block rounded-lg px-4 py-3 hover:bg-white/10">Careers</a>
               <a href="https://direct.chownow.com/order/34681/locations/61755" class="mt-1 rounded-lg bg-brand px-4 py-3 text-center">Order Online</a>
@@ -133,9 +133,10 @@
               >
             </div>
 
-            <a href="#reviews" class="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold backdrop-blur sm:mt-8">
-              <span data-reviews-hero-fallback>See our Google reviews →</span>
-              <span data-reviews-hero-live hidden><strong data-google-rating class="text-2xl text-gold"></strong> <span class="ml-2"><span data-google-count></span> reviews on Google</span></span>
+            <!-- Static rating and count supplied by the owner. -->
+            <a id="reviews" href="https://www.google.com/maps/place/Rincon+Baldinos+-+Giant+Jersey+Subs/@32.2628851,-81.2202343,17z/data=!4m8!3m7!1s0x88fbbd0230e6526d:0x197abf76655cce2f!8m2!3d32.2628851!4d-81.2202343!9m1!1b1!16s%2Fg%2F11y8wvrb37" aria-label="4.5 out of 5 stars from 55 reviews. Read our Google reviews." class="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold backdrop-blur transition hover:bg-white/20 sm:mt-8">
+              <strong class="whitespace-nowrap text-2xl text-gold">4.5 <span aria-hidden="true">★</span></strong>
+              <span>55 reviews on Google <span aria-hidden="true">→</span></span>
             </a>
           </div>
         </div>
@@ -257,35 +258,6 @@
               </p>
             </article>
           </div>
-        </div>
-      </section>
-
-      <!-- Reviews: live Google data appears only after a successful API response. -->
-      <section id="reviews" class="scroll-mt-24 bg-ink px-5 py-14 text-white sm:px-8 sm:py-20 lg:py-28">
-        <div class="mx-auto max-w-7xl">
-          <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <div class="max-w-2xl">
-              <p class="text-xs font-black uppercase tracking-widest text-gold">Google Reviews</p>
-              <h2 class="mt-2 font-display text-3xl font-bold sm:text-5xl">What Rincon guests are saying</h2>
-              <p id="reviews-status" class="mt-4 text-white/80">Read guests’ experiences at our 801 S Columbia Ave location on Google.</p>
-            </div>
-            <a data-google-maps-link href="https://www.google.com/maps/search/?api=1&amp;query=Baldinos%20Giant%20Jersey%20Subs%20801%20S%20Columbia%20Ave%20Rincon%20GA%2031326" class="inline-flex shrink-0 items-center justify-center rounded-xl border border-white/30 px-5 py-3 font-bold hover:bg-white/10">Read all Google reviews →</a>
-          </div>
-          <div id="reviews-summary" hidden class="mt-7 flex flex-wrap items-center gap-4 rounded-xl border border-white/20 p-5" role="status">
-            <strong class="font-display text-4xl text-gold"><span data-google-rating></span><span class="sr-only"> out of 5</span></strong>
-            <span><span data-google-count></span> reviews</span>
-            <img src="/assets/google-maps-attribution.svg" alt="Google Maps" class="google-attribution" />
-          </div>
-          <div id="reviews-list" hidden class="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3"></div>
-          <div id="reviews-attributions" class="mt-4 text-sm text-white/80"></div>
-          <template id="review-template">
-            <article class="rounded-2xl bg-paper p-6 text-ink shadow-card">
-              <div class="flex items-center gap-3"><img data-review-avatar hidden alt="" width="40" height="40" loading="lazy" referrerpolicy="no-referrer" class="h-10 w-10 rounded-full" /><h3 class="font-bold"><a data-review-author class="underline underline-offset-2"></a></h3></div>
-              <p class="mt-3 text-sm font-bold text-forest"><span data-review-rating></span> out of 5 stars <span data-review-date class="ml-2 font-normal text-ink/75"></span></p>
-              <p data-review-text class="mt-4 whitespace-pre-line text-base leading-relaxed"></p>
-              <a data-review-source class="mt-5 inline-block text-sm font-bold text-brand underline">View this review on Google Maps →</a>
-            </article>
-          </template>
         </div>
       </section>
 

@@ -3,7 +3,6 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { recordEvent } from '../worker.mjs';
-import { getGoogleReviews } from '../google-reviews.mjs';
 
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.ico': 'image/x-icon', '.pdf': 'application/pdf', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8' };
@@ -13,19 +12,6 @@ export function createPreviewServer() {
   return http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, `http://${req.headers.host}`);
-      if (url.pathname === '/api/google-reviews') {
-        // Synthetic data is available only in this non-deployed preview server.
-        const mode = new URL(req.headers.referer || url.origin).searchParams.get('reviews-test');
-        if (mode === 'success') {
-          res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-          res.end(JSON.stringify({ available: true, rating: 4.2, count: 123, mapsUrl: 'https://www.google.com/maps', attributions: [], reviews: [
-            { author: 'LOCAL PREVIEW — sample reviewer', authorUrl: 'https://www.google.com/maps', rating: 5, text: 'Synthetic review for layout testing only. This is not a customer review.', date: 'test date', url: 'https://www.google.com/maps' },
-            { author: 'LOCAL PREVIEW — lower rating', authorUrl: 'https://www.google.com/maps', rating: 2, text: 'Synthetic lower-rated review. The display preserves Google’s supplied order and does not filter reviews by star rating. <script>This must remain plain text.</script>', date: 'test date', url: 'https://www.google.com/maps' },
-          ] })); return;
-        }
-        const result = await getGoogleReviews(new Request(url), {});
-        res.writeHead(result.status, Object.fromEntries(result.headers)); res.end(await result.text()); return;
-      }
       if (url.pathname === '/events') {
         const request = new Request(url, { method: req.method, headers: req.headers, ...(req.method === 'POST' ? { body: req, duplex: 'half' } : {}) });
         const result = await recordEvent(request, () => {});

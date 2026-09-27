@@ -77,8 +77,6 @@ form input, form textarea { width: 100%; }
 .menu-filter { border: 1px solid #16201c33; border-radius: .75rem; padding: .75rem 1.5rem; font-weight: 800; background: white; }
 .menu-filter[aria-pressed="true"] { background: #1d6848; color: white; }
 .image-wrap { object-position: center 18%; }
-.google-attribution { height: 18px; width: auto; margin: 10px 10px 5px; }
-#reviews-list article { overflow-wrap: anywhere; }
 form input:not([type="hidden"]), form textarea { font-size: 16px; }
 form input:focus-visible, form textarea:focus-visible { outline: 3px solid #c0282d; outline-offset: 3px; }
 .menu-prices { display: flex; margin-top: .75rem; border: 1px solid #16201c22; border-radius: .5rem; background: #fbf6ec; overflow: hidden; }

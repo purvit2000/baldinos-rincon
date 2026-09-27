@@ -30,49 +30,6 @@
     });
   }
 
-  const reviewList = document.getElementById('reviews-list');
-  if (reviewList) {
-    const endpoint = '/api/google-reviews';
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
-    fetch(endpoint, { cache: 'no-store', credentials: 'omit', signal: controller.signal })
-      .then(response => response.ok ? response.json() : null)
-      .then(data => {
-        if (!data?.available || !Number.isFinite(data.rating) || !Number.isSafeInteger(data.count) || !Array.isArray(data.reviews)) return;
-        document.querySelectorAll('[data-google-rating]').forEach(node => { node.textContent = data.rating.toFixed(1); });
-        document.querySelectorAll('[data-google-count]').forEach(node => { node.textContent = data.count.toLocaleString(); });
-        document.querySelectorAll('[data-google-maps-link]').forEach(node => { node.href = data.mapsUrl; });
-        document.querySelector('[data-reviews-hero-fallback]').hidden = true;
-        document.querySelector('[data-reviews-hero-live]').hidden = false;
-        document.getElementById('reviews-summary').hidden = false;
-        document.getElementById('reviews-status').textContent = 'Reviews supplied by Google Maps, ordered by relevance. Select a review to see its original text and details on Google.';
-        const template = document.getElementById('review-template');
-        for (const review of data.reviews) {
-          const card = template.content.cloneNode(true);
-          const author = card.querySelector('[data-review-author]');
-          author.textContent = review.author;
-          author.href = review.authorUrl || review.url;
-          const avatar = card.querySelector('[data-review-avatar]');
-          if (review.avatar) { avatar.src = review.avatar; avatar.alt = `${review.author}'s profile photo`; avatar.hidden = false; }
-          card.querySelector('[data-review-rating]').textContent = String(review.rating);
-          card.querySelector('[data-review-date]').textContent = review.date;
-          card.querySelector('[data-review-text]').textContent = review.text || 'This customer left a star rating without a written review.';
-          card.querySelector('[data-review-source]').href = review.url;
-          reviewList.append(card);
-        }
-        reviewList.hidden = data.reviews.length === 0;
-        const credits = document.getElementById('reviews-attributions');
-        for (const attribution of data.attributions || []) {
-          const credit = document.createElement(attribution.url ? 'a' : 'span');
-          credit.textContent = attribution.name;
-          if (attribution.url) credit.href = attribution.url;
-          credit.className = 'mr-4 underline';
-          credits.append(credit);
-        }
-      }).catch(() => { /* Keep the direct Google link if the feed is unavailable. */ })
-      .finally(() => clearTimeout(timeout));
-  }
-
   // Only fixed event names and page categories leave the browser. No form values,
   // query strings, user identifiers, cookies, or storage are used for event tracking.
   const lastEvent = new Map();

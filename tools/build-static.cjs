@@ -38,7 +38,7 @@ const csp = [
   `script-src 'self' https://static.cloudflareinsights.com ${[...hashes].join(' ')}`.trim(),
   "style-src 'self' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://*.googleusercontent.com https://*.ggpht.com",
+  "img-src 'self' data:",
   "connect-src 'self' https://formsubmit.co https://cloudflareinsights.com",
   "frame-src https://www.google.com",
   "form-action 'self' https://formsubmit.co",

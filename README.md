@@ -1,6 +1,6 @@
 # Baldinos Rincon website
 
-Three static restaurant pages and a custom 404 page, served by Cloudflare Workers Static Assets. A small Worker accepts anonymous business-action events at `/events` and provides the configurable Google reviews endpoint at `/api/google-reviews`; normal page and asset requests are served directly as static files.
+Three static restaurant pages and a custom 404 page, served by Cloudflare Workers Static Assets. A small Worker accepts anonymous business-action events at `/events`; normal page and asset requests are served directly as static files.
 
 ## Develop and validate
 
@@ -30,7 +30,7 @@ npx wrangler deploy --dry-run
 npx wrangler deploy
 ```
 
-The GitHub repository already triggers Cloudflare Workers Builds for `baldinos-rincon` when `main` is pushed. That is the publishing workflow; a separate local Cloudflare login is unnecessary. The final command above is an alternative manual deployment requiring Cloudflare authentication. The current Cloudflare build command `npm run build` and deploy command `npx wrangler deploy` remain compatible. Deploy through Wrangler so both `worker.mjs` and static assets are included; uploading only `dist/` would omit the dynamic endpoints.
+The GitHub repository already triggers Cloudflare Workers Builds for `baldinos-rincon` when `main` is pushed. That is the publishing workflow; a separate local Cloudflare login is unnecessary. The final command above is an alternative manual deployment requiring Cloudflare authentication. The current Cloudflare build command `npm run build` and deploy command `npx wrangler deploy` remain compatible. Deploy through Wrangler so both `worker.mjs` and static assets are included; uploading only `dist/` would omit action tracking.
 
 For a local Cloudflare routing/header check:
 
@@ -56,6 +56,6 @@ Prices available in the Rincon ChowNow menu were updated on September 27, 2026. 
 
 ## Google reviews
 
-The official Places API integration is implemented and tested with synthetic local data, but activation requires the owner's Google Cloud API key, verified Place ID, billing/quota setup, and the required public notices. Without that configuration, the site displays a Google listing link and makes no paid Google API request. See `GOOGLE-REVIEWS-SETUP.md`. The local preview fixture is `/?reviews-test=success#reviews`; it is never deployed.
+The homepage has a static, owner-supplied **4.5-star / 55-review** badge linking directly to the restaurant’s Google Maps reviews tab. Navigation review links use the same destination. There is no separate reviews section, Google API request, API key, or billing setup required. The badge does not auto-update.
 
 See `IMPLEMENTATION-2026-09-27.md` for scope, verification, and external steps still requiring access or confirmation. The original audit is in `WEBSITE-AUDIT-2026-09-27.md`.

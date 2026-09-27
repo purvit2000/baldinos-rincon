@@ -5,15 +5,10 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "run_worker_first": ["/events", "/api/google-reviews"],
+    "run_worker_first": ["/events"],
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page"
   },
-  "ratelimits": [{
-    "name": "REVIEWS_LIMITER",
-    "namespace_id": "617552026",
-    "simple": { "limit": 5, "period": 60 }
-  }],
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1,
