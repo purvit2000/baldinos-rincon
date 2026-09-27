@@ -11,6 +11,10 @@ node_modules/
 dist/
 test-results/
 playwright-report/
+.wrangler/
+.dev.vars*
+.env*
+!.dev.vars.example
 
 # Local source photos; optimized WebP copies are published.
 assets/Catering.jpeg
